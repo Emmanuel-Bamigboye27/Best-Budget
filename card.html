@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="border: 2px solid hsl(0, 0%, 0%);padding: 20px; position: fixed;top: 10px; width: 400px; background-color: whitesmoke;">
+        <img src="Image/pexels-karolina-grabowska-4386421.jpg" alt="" style="width: 100%;">
+        <h1 style="color: black;">Result Goes Here</h1>
+        <div id="resultcard"></div>
+        <button style="background-color: lightseagreen;height: 50px;border-radius: 5px;width: 100px;">Delete</button>
+        <button onclick="editbudget()" style="background-color: lightseagreen; height: 50px; border-radius: 5px;width: 100px;">Edit</button>
+        <button style="background-color: lightseagreen; height: 50px;border-radius: 5px;width: 100px;" onclick="go() ">Go Back</button>
+    </div>
+    <div>
+        <img src="Image/pexels-karolina-grabowska-4386370.jpg" alt="" style="width: 100%;">
+    </div>
+    
+
+    <script>
+        let budgetArray = JSON.parse(localStorage.getItem("budget"));
+        if(budgetArray && budgetArray.length > 0) {
+            let totalSpent = 0
+            for (let i=0; i<budgetArray.length; i++) {
+                let item = budgetArray[i];
+                let itemCost = item.quant * item.prices;
+                totalSpent += itemCost;
+                resultcard.innerHTML += `<p 
+                >Name Of Product: ${item.pName}<br><br> Quantity: ${item.quant} <br><br> Price:$${item.prices}<br><br> Total Spent: $${item.quant * item.prices}</p>`
+            }
+            
+        }
+        function editbudget() {
+            let newProduct = prompt('Enter your new Product')
+            let newQuantity = prompt('Enter your new Quantity')
+            let newPrice = prompt('Enter your new Price')
+
+        }
+        function go() {
+            window.location.href = "index.html"
+        }
+    </script>
+</body>
+</html>
